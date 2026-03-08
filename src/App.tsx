@@ -28,8 +28,22 @@ import DashboardRouter from "./pages/dashboard/DashboardRouter";
 import ProfilePage from "./pages/dashboard/ProfilePage";
 import CoursesPage from "./pages/dashboard/CoursesPage";
 import ResultsPage from "./pages/dashboard/ResultsPage";
+import FeesPage from "./pages/dashboard/FeesPage";
+import AssignmentsPage from "./pages/dashboard/AssignmentsPage";
+import GradingPage from "./pages/dashboard/GradingPage";
+import AttendancePage from "./pages/dashboard/AttendancePage";
+import StudentsManagementPage from "./pages/dashboard/StudentsManagementPage";
+import AdmissionsManagementPage from "./pages/dashboard/AdmissionsManagementPage";
+import FeeManagementPage from "./pages/dashboard/FeeManagementPage";
+import ReportsPage from "./pages/dashboard/ReportsPage";
 
 const queryClient = new QueryClient();
+
+const DashboardPage = ({ children }: { children: React.ReactNode }) => (
+  <ProtectedRoute>
+    <DashboardLayout>{children}</DashboardLayout>
+  </ProtectedRoute>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -57,39 +71,19 @@ const App = () => (
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-            {/* Protected dashboard routes */}
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout><DashboardRouter /></DashboardLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/profile"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout><ProfilePage /></DashboardLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/courses"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout><CoursesPage /></DashboardLayout>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/results"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout><ResultsPage /></DashboardLayout>
-                </ProtectedRoute>
-              }
-            />
+            {/* Dashboard routes */}
+            <Route path="/dashboard" element={<DashboardPage><DashboardRouter /></DashboardPage>} />
+            <Route path="/dashboard/profile" element={<DashboardPage><ProfilePage /></DashboardPage>} />
+            <Route path="/dashboard/courses" element={<DashboardPage><CoursesPage /></DashboardPage>} />
+            <Route path="/dashboard/results" element={<DashboardPage><ResultsPage /></DashboardPage>} />
+            <Route path="/dashboard/fees" element={<DashboardPage><FeesPage /></DashboardPage>} />
+            <Route path="/dashboard/assignments" element={<DashboardPage><AssignmentsPage /></DashboardPage>} />
+            <Route path="/dashboard/grading" element={<DashboardPage><GradingPage /></DashboardPage>} />
+            <Route path="/dashboard/attendance" element={<DashboardPage><AttendancePage /></DashboardPage>} />
+            <Route path="/dashboard/students" element={<DashboardPage><StudentsManagementPage /></DashboardPage>} />
+            <Route path="/dashboard/admissions" element={<DashboardPage><AdmissionsManagementPage /></DashboardPage>} />
+            <Route path="/dashboard/fee-management" element={<DashboardPage><FeeManagementPage /></DashboardPage>} />
+            <Route path="/dashboard/reports" element={<DashboardPage><ReportsPage /></DashboardPage>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
