@@ -27,6 +27,14 @@ const navItems = [
   { label: "Campus Life", path: "/campus-life" },
   { label: "Events", path: "/events" },
   { label: "News", path: "/news" },
+  {
+    label: "Media",
+    path: "/gallery",
+    children: [
+      { label: "Photo Gallery", path: "/gallery" },
+      { label: "Downloads", path: "/downloads" },
+    ],
+  },
   { label: "Contact", path: "/contact" },
 ];
 
