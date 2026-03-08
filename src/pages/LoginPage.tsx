@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
-import { ArrowRight, Eye, EyeOff, GraduationCap } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, GraduationCap, BookOpenCheck, ShieldCheck, Users } from "lucide-react";
 import universityCrest from "@/assets/university-crest.png";
+import campusImage from "@/assets/campus-login.jpg";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -30,45 +31,68 @@ export default function LoginPage() {
     }
   };
 
+  const portalLinks = [
+    { icon: GraduationCap, label: "Student Portal", desc: "Access courses, results & fees" },
+    { icon: BookOpenCheck, label: "Lecturer Portal", desc: "Manage classes & grading" },
+    { icon: ShieldCheck, label: "Admin Portal", desc: "University administration" },
+  ];
+
   return (
     <div className="min-h-screen flex">
-      {/* Left branding panel */}
-      <div className="hidden lg:flex lg:w-1/2 bg-hero-pattern flex-col justify-between p-12 text-primary-foreground relative overflow-hidden">
-        <div className="relative z-10">
-          <Link to="/" className="inline-flex items-center gap-3">
-            <img src={universityCrest} alt="Westbridge University" className="h-12 w-12" />
+      {/* Left branding panel with campus image */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <img src={campusImage} alt="Campus" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/70 to-primary/90" />
+        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
+          <div>
+            <Link to="/" className="inline-flex items-center gap-3">
+              <img src={universityCrest} alt="Westbridge University" className="h-12 w-12" />
+              <div>
+                <h2 className="font-heading text-xl font-bold text-primary-foreground">Westbridge University</h2>
+                <p className="text-primary-foreground/60 text-sm">Excellence in Education</p>
+              </div>
+            </Link>
+          </div>
+
+          <div className="space-y-8">
             <div>
-              <h2 className="font-heading text-xl font-bold">Westbridge University</h2>
-              <p className="text-primary-foreground/60 text-sm">Excellence in Education</p>
+              <h1 className="font-heading text-4xl font-bold leading-tight text-primary-foreground">
+                Your Academic Journey<br />Starts Here
+              </h1>
+              <p className="text-primary-foreground/70 text-lg max-w-md mt-4">
+                Access course registration, results, assignments, and everything you need — all in one portal.
+              </p>
             </div>
-          </Link>
-        </div>
-        <div className="relative z-10 space-y-6">
-          <h1 className="font-heading text-4xl font-bold leading-tight">
-            Your Academic Journey<br />Starts Here
-          </h1>
-          <p className="text-primary-foreground/70 text-lg max-w-md">
-            Access course registration, results, assignments, and everything you need — all in one portal.
-          </p>
-          <div className="flex gap-8">
-            <div>
-              <p className="text-3xl font-bold text-accent">3,200+</p>
-              <p className="text-sm text-primary-foreground/60">Students</p>
+
+            {/* Portal type cards */}
+            <div className="grid grid-cols-3 gap-3">
+              {portalLinks.map((p) => (
+                <div key={p.label} className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-4 border border-primary-foreground/10">
+                  <p.icon className="h-6 w-6 text-accent mb-2" />
+                  <p className="text-sm font-semibold text-primary-foreground">{p.label}</p>
+                  <p className="text-xs text-primary-foreground/50 mt-0.5">{p.desc}</p>
+                </div>
+              ))}
             </div>
-            <div>
-              <p className="text-3xl font-bold text-accent">180+</p>
-              <p className="text-sm text-primary-foreground/60">Faculty</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-accent">120+</p>
-              <p className="text-sm text-primary-foreground/60">Courses</p>
+
+            <div className="flex gap-8">
+              <div>
+                <p className="text-3xl font-bold text-accent">3,200+</p>
+                <p className="text-sm text-primary-foreground/60">Students</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-accent">180+</p>
+                <p className="text-sm text-primary-foreground/60">Faculty</p>
+              </div>
+              <div>
+                <p className="text-3xl font-bold text-accent">120+</p>
+                <p className="text-sm text-primary-foreground/60">Courses</p>
+              </div>
             </div>
           </div>
+
+          <p className="text-xs text-primary-foreground/40">© 2026 Westbridge University. All rights reserved.</p>
         </div>
-        <p className="relative z-10 text-xs text-primary-foreground/40">© 2026 Westbridge University. All rights reserved.</p>
-        {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/10 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-accent/5 blur-3xl" />
       </div>
 
       {/* Right login panel */}
@@ -84,6 +108,16 @@ export default function LoginPage() {
           <div className="mb-8">
             <h2 className="font-display text-2xl font-bold text-foreground">Sign in to your portal</h2>
             <p className="text-muted-foreground text-sm mt-1">Enter your credentials to access your dashboard</p>
+          </div>
+
+          {/* Role quick-access pills (mobile) */}
+          <div className="lg:hidden flex gap-2 mb-6">
+            {portalLinks.map((p) => (
+              <div key={p.label} className="flex-1 flex flex-col items-center gap-1.5 p-3 rounded-lg bg-muted text-center">
+                <p.icon className="h-5 w-5 text-primary" />
+                <span className="text-[11px] font-medium text-foreground leading-tight">{p.label.replace(" Portal", "")}</span>
+              </div>
+            ))}
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-5">
