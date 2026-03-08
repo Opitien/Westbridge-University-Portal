@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, ZoomIn } from "lucide-react";
 
 const galleryCategories = ["All", "Campus", "Events", "Academics", "Sports", "Graduation"];
 
@@ -39,9 +39,9 @@ export default function GalleryPage() {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-colors ${
+              className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-all ${
                 activeCategory === cat
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-soft"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
@@ -60,7 +60,7 @@ export default function GalleryPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
-                className="cursor-pointer group overflow-hidden rounded-xl border border-border"
+                className="cursor-pointer group overflow-hidden rounded-xl border border-border relative"
                 onClick={() => setLightbox(item)}
               >
                 <div className="aspect-square overflow-hidden">
@@ -70,6 +70,9 @@ export default function GalleryPage() {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
+                </div>
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors flex items-center justify-center">
+                  <ZoomIn className="h-8 w-8 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
                 <div className="p-3 bg-card">
                   <p className="font-body text-sm font-medium text-foreground">{item.title}</p>
@@ -81,7 +84,6 @@ export default function GalleryPage() {
         </motion.div>
       </Section>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
@@ -91,8 +93,8 @@ export default function GalleryPage() {
             className="fixed inset-0 z-[100] bg-foreground/90 flex items-center justify-center p-4"
             onClick={() => setLightbox(null)}
           >
-            <button className="absolute top-6 right-6 text-primary-foreground" onClick={() => setLightbox(null)}>
-              <X className="h-8 w-8" />
+            <button className="absolute top-6 right-6 text-primary-foreground w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors" onClick={() => setLightbox(null)}>
+              <X className="h-6 w-6" />
             </button>
             <motion.img
               initial={{ scale: 0.8 }}

@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
-import { Calendar } from "lucide-react";
+import { CalendarDays, MapPin, Clock } from "lucide-react";
 
 const events = [
   { title: "Spring Open Day", date: "March 15, 2026", type: "Admissions", desc: "Tour the campus, meet faculty, and explore programs." },
@@ -27,12 +27,14 @@ export default function EventsPage() {
         <SectionTitle subtitle="Mark your calendar for these exciting events">Upcoming Events</SectionTitle>
         <div className="grid md:grid-cols-2 gap-6">
           {events.map((e) => (
-            <div key={e.title} className="bg-card rounded-xl p-6 shadow-soft border border-border hover:shadow-elevated transition-shadow">
-              <span className="text-xs font-body font-semibold text-gold uppercase tracking-wider">{e.type}</span>
-              <h3 className="font-display text-lg font-bold text-foreground mt-1 mb-2">{e.title}</h3>
+            <div key={e.title} className="bg-card rounded-xl p-6 shadow-soft border border-border hover:shadow-elevated transition-shadow group">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-xs font-body font-semibold text-accent uppercase tracking-wider bg-accent/10 px-2.5 py-1 rounded-md">{e.type}</span>
+              </div>
+              <h3 className="font-display text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">{e.title}</h3>
               <p className="text-muted-foreground font-body text-sm mb-3">{e.desc}</p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground font-body">
-                <Calendar className="h-4 w-4 text-gold" /> {e.date}
+                <CalendarDays className="h-4 w-4 text-accent" /> {e.date}
               </div>
             </div>
           ))}
@@ -44,7 +46,10 @@ export default function EventsPage() {
         <div className="max-w-2xl mx-auto space-y-4">
           {calendarItems.map((c) => (
             <div key={c.event} className="flex justify-between items-center bg-card rounded-lg p-4 shadow-soft border border-border">
-              <span className="font-body font-semibold text-foreground">{c.event}</span>
+              <div className="flex items-center gap-3">
+                <Clock className="h-4 w-4 text-accent" />
+                <span className="font-body font-semibold text-foreground">{c.event}</span>
+              </div>
               <span className="text-sm font-body text-muted-foreground">{c.period}</span>
             </div>
           ))}

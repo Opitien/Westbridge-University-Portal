@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { PageHero, Section } from "@/components/SectionComponents";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   { q: "How do I apply to Grand University?", a: "Visit our Admissions page and click 'Start Application'. You'll need to create an account, fill in your details, upload documents, and pay the application fee." },
@@ -22,27 +23,41 @@ export default function FAQPage() {
       <PageHero title="Frequently Asked Questions" subtitle="Find answers to common questions about Grand University." breadcrumb="FAQ" />
 
       <Section>
-        <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map((faq, i) => (
-            <div key={i} className="bg-card rounded-xl border border-border shadow-soft overflow-hidden">
-              <button
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full flex items-center justify-between p-5 text-left"
-              >
-                <span className="font-display text-base font-semibold text-foreground pr-4">{faq.q}</span>
-                {openIndex === i ? (
-                  <ChevronUp className="h-5 w-5 text-gold shrink-0" />
-                ) : (
-                  <ChevronDown className="h-5 w-5 text-muted-foreground shrink-0" />
-                )}
-              </button>
-              {openIndex === i && (
-                <div className="px-5 pb-5">
-                  <p className="font-body text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
-                </div>
-              )}
+        <div className="max-w-3xl mx-auto">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center">
+              <MessageCircleQuestion className="h-5 w-5 text-accent" />
             </div>
-          ))}
+            <p className="font-body text-muted-foreground text-sm">Click on a question to see the answer</p>
+          </div>
+          <div className="space-y-3">
+            {faqs.map((faq, i) => (
+              <div key={i} className="bg-card rounded-xl border border-border shadow-soft overflow-hidden">
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full flex items-center justify-between p-5 text-left"
+                >
+                  <span className="font-display text-base font-semibold text-foreground pr-4">{faq.q}</span>
+                  <ChevronDown className={`h-5 w-5 text-accent shrink-0 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`} />
+                </button>
+                <AnimatePresence>
+                  {openIndex === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5">
+                        <p className="font-body text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
     </Layout>
