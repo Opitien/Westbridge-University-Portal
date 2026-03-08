@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown, Phone, Mail, HelpCircle, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import universityCrest from "@/assets/university-crest.png";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -132,8 +133,9 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* CTA + Mobile toggle */}
-          <div className="flex items-center gap-3">
+          {/* CTA + Theme toggle + Mobile toggle */}
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
             <Link
               to="/admissions"
               className="hidden lg:inline-flex items-center gap-1.5 bg-accent text-accent-foreground px-4 py-2 rounded-lg font-body text-xs font-bold hover:bg-gold-light transition-colors"
