@@ -26,7 +26,7 @@ export default function ContactPage() {
               {[
                 { icon: MapPin, label: "Address", value: "1 University Avenue, Academic City, AC 12345" },
                 { icon: Phone, label: "Phone", value: "+1 (555) 123-4567" },
-                { icon: Mail, label: "Email", value: "info@granduniversity.edu" },
+                { icon: Mail, label: "Email", value: "info@westbridgeuniversity.edu" },
                 { icon: Clock, label: "Office Hours", value: "Mon–Fri: 8AM–5PM, Sat: 9AM–1PM" },
               ].map((c) => (
                 <div key={c.label} className="flex items-start gap-4">

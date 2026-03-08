@@ -44,7 +44,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-[85vh] flex items-center">
         <div className="absolute inset-0">
-          <img src={heroCampus} alt="Grand University Campus" className="w-full h-full object-cover" />
+          <img src={heroCampus} alt="WestBridge University Campus" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-hero-pattern" />
         </div>
         <div className="relative container mx-auto px-4 py-20">
@@ -132,7 +132,7 @@ export default function HomePage() {
 
       {/* Announcements */}
       <Section className="bg-muted/50">
-        <SectionTitle subtitle="Stay updated with the latest news from Grand University">
+        <SectionTitle subtitle="Stay updated with the latest news from WestBridge University">
           Latest Announcements
         </SectionTitle>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

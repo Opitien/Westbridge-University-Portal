@@ -57,7 +57,7 @@ export default function Navbar() {
             </span>
             <span className="flex items-center gap-1.5">
               <Mail className="h-3 w-3 text-gold" />
-              info@granduniversity.edu
+              info@westbridgeuniversity.edu
             </span>
           </div>
           <div className="flex items-center gap-4 ml-auto">
@@ -78,10 +78,10 @@ export default function Navbar() {
         <div className="container mx-auto flex items-center justify-between px-4 h-16">
           <Link to="/" className="flex items-center gap-3 group">
             <div className="relative">
-              <img src={universityCrest} alt="Grand University Crest" className="h-11 w-11 transition-transform group-hover:scale-105" />
+              <img src={universityCrest} alt="WestBridge University Crest" className="h-11 w-11 transition-transform group-hover:scale-105" />
             </div>
             <div className="leading-tight">
-              <h1 className="font-heading text-base font-bold text-primary tracking-tight">Grand University</h1>
+              <h1 className="font-heading text-base font-bold text-primary tracking-tight">WestBridge University</h1>
               <p className="text-[10px] text-muted-foreground font-body uppercase tracking-[0.15em]">Excellence in Education</p>
             </div>
           </Link>

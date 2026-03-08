@@ -6,7 +6,7 @@ import labResearch from "@/assets/lab-research.jpg";
 import graduation from "@/assets/graduation.jpg";
 
 const news = [
-  { title: "Grand University Ranked #87 Globally", date: "Mar 6, 2026", category: "Rankings", excerpt: "The latest world university rankings place Grand University among the top 100 institutions worldwide.", image: campusAerial },
+  { title: "WestBridge University Ranked #87 Globally", date: "Mar 6, 2026", category: "Rankings", excerpt: "The latest world university rankings place WestBridge University among the top 100 institutions worldwide.", image: campusAerial },
   { title: "New $50M Science Building Announced", date: "Mar 4, 2026", category: "Campus", excerpt: "Construction of a state-of-the-art interdisciplinary science center begins this summer.", image: labResearch },
   { title: "Prof. Whitfield Receives National Science Medal", date: "Mar 2, 2026", category: "Awards", excerpt: "Vice Chancellor recognized for lifetime contributions to quantum physics research.", image: graduation },
   { title: "Partnership with MIT and Stanford", date: "Feb 28, 2026", category: "Partnerships", excerpt: "New collaborative research initiative spanning three continents in AI and robotics.", image: labResearch },
@@ -17,7 +17,7 @@ const news = [
 export default function NewsPage() {
   return (
     <Layout>
-      <PageHero title="News & Announcements" subtitle="The latest updates from Grand University." breadcrumb="News" />
+      <PageHero title="News & Announcements" subtitle="The latest updates from WestBridge University." breadcrumb="News" />
 
       <Section>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -18,9 +18,9 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-5">
-              <img src={universityCrest} alt="Grand University" className="h-10 w-10 brightness-0 invert opacity-90" />
+              <img src={universityCrest} alt="WestBridge University" className="h-10 w-10 brightness-0 invert opacity-90" />
               <div>
-                <h3 className="font-heading text-lg font-bold">Grand University</h3>
+                <h3 className="font-heading text-lg font-bold">WestBridge University</h3>
                 <p className="text-[10px] text-primary-foreground/50 uppercase tracking-[0.15em]">Est. 1892</p>
               </div>
             </div>
@@ -102,13 +102,13 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-primary-foreground/10 flex items-center justify-center shrink-0">
                   <Mail className="h-4 w-4 text-gold" />
                 </div>
-                <span>info@granduniversity.edu</span>
+                <span>info@westbridgeuniversity.edu</span>
               </li>
               <li className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-lg bg-primary-foreground/10 flex items-center justify-center shrink-0">
                   <Globe className="h-4 w-4 text-gold" />
                 </div>
-                <span>www.granduniversity.edu</span>
+                <span>www.westbridgeuniversity.edu</span>
               </li>
             </ul>
           </div>
@@ -119,7 +119,7 @@ export default function Footer() {
       <div className="border-t border-primary-foreground/10">
         <div className="container mx-auto px-4 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-primary-foreground/40 font-body">
-            © {new Date().getFullYear()} Grand University. All rights reserved.
+            © {new Date().getFullYear()} WestBridge University. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs font-body text-primary-foreground/40">
             <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>

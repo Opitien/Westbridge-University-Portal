@@ -5,9 +5,9 @@ import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
-  { q: "How do I apply to Grand University?", a: "Visit our Admissions page and click 'Start Application'. You'll need to create an account, fill in your details, upload documents, and pay the application fee." },
+  { q: "How do I apply to WestBridge University?", a: "Visit our Admissions page and click 'Start Application'. You'll need to create an account, fill in your details, upload documents, and pay the application fee." },
   { q: "What are the tuition fees?", a: "Tuition varies by program. Undergraduate programs range from $8,000–$15,000 per year. Postgraduate programs range from $10,000–$25,000. Scholarships are available for qualifying students." },
-  { q: "Is campus housing available?", a: "Yes, Grand University offers modern on-campus housing for over 8,000 students. You can apply for hostel accommodation through the student portal after admission." },
+  { q: "Is campus housing available?", a: "Yes, WestBridge University offers modern on-campus housing for over 8,000 students. You can apply for hostel accommodation through the student portal after admission." },
   { q: "What scholarships are available?", a: "We offer merit-based, need-based, and athletic scholarships. International students may qualify for our Global Excellence Scholarship covering up to 100% of tuition." },
   { q: "How do I access the student portal?", a: "After enrollment, you'll receive your matriculation number and login credentials via email. Use these to access the student portal at the portal link in the navigation." },
   { q: "Can I transfer credits from another university?", a: "Yes, we accept transfer credits from accredited institutions. Submit your transcripts during application and our academic office will evaluate eligible credits." },
@@ -20,7 +20,7 @@ export default function FAQPage() {
 
   return (
     <Layout>
-      <PageHero title="Frequently Asked Questions" subtitle="Find answers to common questions about Grand University." breadcrumb="FAQ" />
+      <PageHero title="Frequently Asked Questions" subtitle="Find answers to common questions about WestBridge University." breadcrumb="FAQ" />
 
       <Section>
         <div className="max-w-3xl mx-auto">
