@@ -42,6 +42,7 @@ import TimetablePage from "./pages/dashboard/TimetablePage";
 import LecturersManagementPage from "./pages/dashboard/LecturersManagementPage";
 import DepartmentsPage from "./pages/dashboard/DepartmentsPage";
 import SettingsPage from "./pages/dashboard/SettingsPage";
+import AdminResultsPage from "./pages/dashboard/AdminResultsPage";
 
 const queryClient = new QueryClient();
 
@@ -96,6 +97,7 @@ const App = () => (
             <Route path="/dashboard/lecturers" element={<DashboardPage><LecturersManagementPage /></DashboardPage>} />
             <Route path="/dashboard/departments" element={<DashboardPage><DepartmentsPage /></DashboardPage>} />
             <Route path="/dashboard/settings" element={<DashboardPage><SettingsPage /></DashboardPage>} />
+            <Route path="/dashboard/admin-results" element={<DashboardPage><AdminResultsPage /></DashboardPage>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
