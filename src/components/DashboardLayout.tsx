@@ -42,6 +42,7 @@ const adminNav: NavItem[] = [
   { label: "Lecturers", path: "/dashboard/lecturers", icon: GraduationCap },
   { label: "Departments", path: "/dashboard/departments", icon: Building2 },
   { label: "Courses", path: "/dashboard/courses", icon: BookOpen },
+  { label: "Results", path: "/dashboard/admin-results", icon: FileText },
   { label: "Admissions", path: "/dashboard/admissions", icon: ClipboardList },
   { label: "Fee Management", path: "/dashboard/fee-management", icon: CreditCard },
   { label: "Reports", path: "/dashboard/reports", icon: BarChart3 },
