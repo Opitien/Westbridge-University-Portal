@@ -1,16 +1,23 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth, AppRole } from "@/contexts/AuthContext";
 import { toast } from "sonner";
-import { ArrowRight, Eye, EyeOff, GraduationCap, BookOpenCheck, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, GraduationCap, BookOpenCheck, ShieldCheck } from "lucide-react";
 import universityCrest from "@/assets/university-crest.png";
 import campusImage from "@/assets/campus-login.jpg";
+
+const roles = [
+  { key: "student" as AppRole, icon: GraduationCap, label: "Student", desc: "Access courses, results & fees" },
+  { key: "lecturer" as AppRole, icon: BookOpenCheck, label: "Lecturer", desc: "Manage classes & grading" },
+  { key: "admin" as AppRole, icon: ShieldCheck, label: "Admin", desc: "University administration" },
+];
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<AppRole>("student");
   const { signIn } = useAuth();
   const navigate = useNavigate();
 
