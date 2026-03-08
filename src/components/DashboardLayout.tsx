@@ -4,10 +4,11 @@ import { useAuth, AppRole } from "@/contexts/AuthContext";
 import {
   LayoutDashboard, User, BookOpen, ClipboardList, FileText, Calendar,
   CreditCard, LogOut, Menu, X, GraduationCap,
-  Users, Settings, BarChart3, Building2, Bell, Home as HomeIcon, Search, ChevronDown
+  Users, Settings, BarChart3, Building2, Home as HomeIcon, Search, ChevronDown, Clock
 } from "lucide-react";
 import universityCrest from "@/assets/university-crest.png";
 import { motion, AnimatePresence } from "framer-motion";
+import NotificationDropdown from "@/components/NotificationDropdown";
 
 interface NavItem {
   label: string;
@@ -18,6 +19,7 @@ interface NavItem {
 const studentNav: NavItem[] = [
   { label: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { label: "Courses", path: "/dashboard/courses", icon: BookOpen },
+  { label: "Timetable", path: "/dashboard/timetable", icon: Clock },
   { label: "Assignments", path: "/dashboard/assignments", icon: FileText },
   { label: "Results", path: "/dashboard/results", icon: ClipboardList },
   { label: "Fees", path: "/dashboard/fees", icon: CreditCard },
@@ -27,6 +29,7 @@ const studentNav: NavItem[] = [
 const lecturerNav: NavItem[] = [
   { label: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
   { label: "My Courses", path: "/dashboard/courses", icon: BookOpen },
+  { label: "Timetable", path: "/dashboard/timetable", icon: Clock },
   { label: "Assignments", path: "/dashboard/assignments", icon: FileText },
   { label: "Grading", path: "/dashboard/grading", icon: ClipboardList },
   { label: "Attendance", path: "/dashboard/attendance", icon: Calendar },
@@ -179,10 +182,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
               <span className="text-muted-foreground/60">Search...</span>
             </div>
             {/* Notifications */}
-            <button className="p-2 text-muted-foreground hover:text-foreground transition-colors relative rounded-lg hover:bg-muted">
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-1.5 right-1.5 h-2 w-2 bg-destructive rounded-full" />
-            </button>
+            <NotificationDropdown />
             {/* User pill */}
             <div className="flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-lg bg-muted">
               <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center">

@@ -21,6 +21,8 @@ import GalleryPage from "./pages/GalleryPage";
 import DownloadsPage from "./pages/DownloadsPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
 import NotFound from "./pages/NotFound";
 
@@ -36,6 +38,7 @@ import StudentsManagementPage from "./pages/dashboard/StudentsManagementPage";
 import AdmissionsManagementPage from "./pages/dashboard/AdmissionsManagementPage";
 import FeeManagementPage from "./pages/dashboard/FeeManagementPage";
 import ReportsPage from "./pages/dashboard/ReportsPage";
+import TimetablePage from "./pages/dashboard/TimetablePage";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +72,8 @@ const App = () => (
             <Route path="/portal" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
             {/* Dashboard routes */}
@@ -84,6 +89,7 @@ const App = () => (
             <Route path="/dashboard/admissions" element={<DashboardPage><AdmissionsManagementPage /></DashboardPage>} />
             <Route path="/dashboard/fee-management" element={<DashboardPage><FeeManagementPage /></DashboardPage>} />
             <Route path="/dashboard/reports" element={<DashboardPage><ReportsPage /></DashboardPage>} />
+            <Route path="/dashboard/timetable" element={<DashboardPage><TimetablePage /></DashboardPage>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
