@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+import { useAuth, AppRole } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { ArrowRight, Eye, EyeOff, GraduationCap, BookOpenCheck, ShieldCheck } from "lucide-react";
 import universityCrest from "@/assets/university-crest.png";
 import campusImage from "@/assets/campus-login.jpg";
+
+const roles = [
+  { key: "student" as AppRole, icon: GraduationCap, label: "Student", desc: "Course registration & results" },
+  { key: "lecturer" as AppRole, icon: BookOpenCheck, label: "Lecturer", desc: "Teaching & grading" },
+  { key: "admin" as AppRole, icon: ShieldCheck, label: "Admin", desc: "University management" },
+];
 
 export default function RegisterPage() {
   const [fullName, setFullName] = useState("");
@@ -12,6 +18,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<AppRole>("student");
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
@@ -26,7 +33,7 @@ export default function RegisterPage() {
       return;
     }
     setIsLoading(true);
-    const { error } = await signUp(email, password, fullName);
+    const { error } = await signUp(email, password, fullName, selectedRole);
     setIsLoading(false);
     if (error) {
       toast.error(error.message);
@@ -35,12 +42,6 @@ export default function RegisterPage() {
       navigate("/login");
     }
   };
-
-  const portalLinks = [
-    { icon: GraduationCap, label: "Student", desc: "Course registration & results" },
-    { icon: BookOpenCheck, label: "Lecturer", desc: "Teaching & grading" },
-    { icon: ShieldCheck, label: "Admin", desc: "University management" },
-  ];
 
   return (
     <div className="min-h-screen flex">
@@ -62,16 +63,25 @@ export default function RegisterPage() {
               Join Our Academic<br />Community
             </h1>
             <p className="text-primary-foreground/70 text-lg max-w-md">
-              Create your account to access the student portal and begin your academic journey with us.
+              Create your account to access the portal and begin your journey with us.
             </p>
 
             <div className="grid grid-cols-3 gap-3">
-              {portalLinks.map((p) => (
-                <div key={p.label} className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-4 border border-primary-foreground/10">
-                  <p.icon className="h-6 w-6 text-accent mb-2" />
-                  <p className="text-sm font-semibold text-primary-foreground">{p.label}</p>
-                  <p className="text-xs text-primary-foreground/50 mt-0.5">{p.desc}</p>
-                </div>
+              {roles.map((r) => (
+                <button
+                  type="button"
+                  key={r.key}
+                  onClick={() => setSelectedRole(r.key)}
+                  className={`text-left rounded-xl p-4 border transition-all ${
+                    selectedRole === r.key
+                      ? "bg-accent/20 border-accent ring-1 ring-accent"
+                      : "bg-primary-foreground/10 border-primary-foreground/10 hover:bg-primary-foreground/15"
+                  }`}
+                >
+                  <r.icon className={`h-6 w-6 mb-2 ${selectedRole === r.key ? "text-accent" : "text-primary-foreground/60"}`} />
+                  <p className="text-sm font-semibold text-primary-foreground">{r.label}</p>
+                  <p className="text-xs text-primary-foreground/50 mt-0.5">{r.desc}</p>
+                </button>
               ))}
             </div>
           </div>
@@ -92,16 +102,25 @@ export default function RegisterPage() {
 
           <div className="mb-8">
             <h2 className="font-display text-2xl font-bold text-foreground">Create your account</h2>
-            <p className="text-muted-foreground text-sm mt-1">Register as a prospective student</p>
+            <p className="text-muted-foreground text-sm mt-1">Register as a new user</p>
           </div>
 
-          {/* Role pills (mobile) */}
-          <div className="lg:hidden flex gap-2 mb-6">
-            {portalLinks.map((p) => (
-              <div key={p.label} className="flex-1 flex flex-col items-center gap-1.5 p-3 rounded-lg bg-muted text-center">
-                <p.icon className="h-5 w-5 text-primary" />
-                <span className="text-[11px] font-medium text-foreground leading-tight">{p.label}</span>
-              </div>
+          {/* Role selector */}
+          <div className="flex gap-2 mb-6">
+            {roles.map((r) => (
+              <button
+                type="button"
+                key={r.key}
+                onClick={() => setSelectedRole(r.key)}
+                className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-lg text-center transition-all border ${
+                  selectedRole === r.key
+                    ? "bg-primary/10 border-primary text-primary ring-1 ring-primary/30"
+                    : "bg-muted border-transparent hover:bg-muted/80"
+                }`}
+              >
+                <r.icon className={`h-5 w-5 ${selectedRole === r.key ? "text-primary" : "text-muted-foreground"}`} />
+                <span className={`text-[11px] font-medium leading-tight ${selectedRole === r.key ? "text-primary" : "text-foreground"}`}>{r.label}</span>
+              </button>
             ))}
           </div>
 
@@ -149,7 +168,7 @@ export default function RegisterPage() {
               disabled={isLoading}
               className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              {isLoading ? "Creating..." : "Create Account"} <ArrowRight className="h-4 w-4" />
+              {isLoading ? "Creating..." : `Create ${roles.find(r => r.key === selectedRole)?.label} Account`} <ArrowRight className="h-4 w-4" />
             </button>
             <p className="text-xs text-muted-foreground text-center">
               Already have an account?{" "}
