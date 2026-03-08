@@ -28,7 +28,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .select("role")
       .eq("user_id", userId)
       .maybeSingle();
-    setRole((data?.role as AppRole) ?? null);
+    if (data) {
+      setRole(data.role as AppRole);
+    }
   };
 
   useEffect(() => {
@@ -37,7 +39,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setSession(session);
         setUser(session?.user ?? null);
         if (session?.user) {
-          // Use setTimeout to avoid Supabase deadlock
           setTimeout(() => fetchRole(session.user.id), 0);
         } else {
           setRole(null);
@@ -64,14 +65,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signUp = async (email: string, password: string, fullName: string, role: AppRole = "student") => {
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: { emailRedirectTo: window.location.origin, data: { full_name: fullName, role } },
     });
-    if (!error && data.user) {
-      // Role is assigned via database trigger on signup
-    }
     return { error: error as Error | null };
   };
 
