@@ -1,6 +1,8 @@
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
-import { Users, Trophy, Home, Wifi } from "lucide-react";
+import { Library, Dumbbell, UtensilsCrossed, HeartPulse, Laptop, Home } from "lucide-react";
+import campusAerial from "@/assets/campus-aerial.jpg";
+import library from "@/assets/library.jpg";
 
 const clubs = [
   "Debate Society", "Drama Club", "Tech Innovation Club", "Music Society",
@@ -8,12 +10,12 @@ const clubs = [
 ];
 
 const facilities = [
-  { icon: "🏛️", name: "Central Library", desc: "500,000+ volumes, 24/7 digital access" },
-  { icon: "🏋️", name: "Sports Complex", desc: "Olympic pool, gym, indoor courts" },
-  { icon: "🍽️", name: "Dining Halls", desc: "5 dining facilities, international cuisine" },
-  { icon: "🏥", name: "Health Center", desc: "Full-service medical and counseling" },
-  { icon: "💻", name: "IT Center", desc: "High-speed internet, computer labs" },
-  { icon: "🏡", name: "Student Housing", desc: "Modern hostels for 8,000+ students" },
+  { icon: Library, name: "Central Library", desc: "500,000+ volumes, 24/7 digital access" },
+  { icon: Dumbbell, name: "Sports Complex", desc: "Olympic pool, gym, indoor courts" },
+  { icon: UtensilsCrossed, name: "Dining Halls", desc: "5 dining facilities, international cuisine" },
+  { icon: HeartPulse, name: "Health Center", desc: "Full-service medical and counseling" },
+  { icon: Laptop, name: "IT Center", desc: "High-speed internet, computer labs" },
+  { icon: Home, name: "Student Housing", desc: "Modern hostels for 8,000+ students" },
 ];
 
 export default function CampusLifePage() {
@@ -25,11 +27,17 @@ export default function CampusLifePage() {
         breadcrumb="Campus"
       />
 
+      {/* Full-width campus image */}
+      <div className="relative h-64 md:h-96">
+        <img src={campusAerial} alt="Campus overview" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+      </div>
+
       <Section>
         <SectionTitle subtitle="Join a community of passionate students">Student Clubs & Organizations</SectionTitle>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {clubs.map((club) => (
-            <div key={club} className="bg-card rounded-xl p-5 shadow-soft border border-border text-center hover:border-gold/30 transition-colors">
+            <div key={club} className="bg-card rounded-xl p-5 shadow-soft border border-border text-center hover:border-accent/30 hover:shadow-elevated transition-all">
               <p className="font-body font-semibold text-foreground">{club}</p>
             </div>
           ))}
@@ -40,14 +48,28 @@ export default function CampusLifePage() {
         <SectionTitle subtitle="Everything you need for a great campus experience">Campus Facilities</SectionTitle>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {facilities.map((f) => (
-            <div key={f.name} className="bg-card rounded-xl p-6 shadow-soft border border-border">
-              <span className="text-3xl block mb-3">{f.icon}</span>
+            <div key={f.name} className="bg-card rounded-xl p-6 shadow-soft border border-border hover:shadow-elevated transition-shadow">
+              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                <f.icon className="h-6 w-6 text-accent" />
+              </div>
               <h3 className="font-display text-lg font-bold text-foreground mb-1">{f.name}</h3>
               <p className="text-muted-foreground font-body text-sm">{f.desc}</p>
             </div>
           ))}
         </div>
       </Section>
+
+      {/* Library image section */}
+      <div className="relative h-64 md:h-80">
+        <img src={library} alt="University Library interior" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-primary/30" />
+        <div className="absolute inset-0 flex items-center justify-center text-center text-primary-foreground">
+          <div>
+            <p className="font-heading text-2xl md:text-3xl font-bold">Explore. Discover. Grow.</p>
+            <p className="font-body text-primary-foreground/70 mt-2">Your campus, your community</p>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

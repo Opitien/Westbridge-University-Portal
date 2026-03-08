@@ -1,11 +1,11 @@
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
-import { Download, FileText, BookOpen, Calendar, ClipboardList } from "lucide-react";
+import { ArrowDownToLine, FolderOpen, FileSpreadsheet, CalendarRange, ClipboardPen } from "lucide-react";
 
 const downloadCategories = [
   {
     title: "Academic Documents",
-    icon: BookOpen,
+    icon: FolderOpen,
     files: [
       { name: "Academic Calendar 2025/2026", type: "PDF", size: "1.2 MB" },
       { name: "Student Handbook", type: "PDF", size: "3.5 MB" },
@@ -15,7 +15,7 @@ const downloadCategories = [
   },
   {
     title: "Admission Forms",
-    icon: ClipboardList,
+    icon: ClipboardPen,
     files: [
       { name: "Undergraduate Application Form", type: "PDF", size: "850 KB" },
       { name: "Postgraduate Application Form", type: "PDF", size: "920 KB" },
@@ -25,7 +25,7 @@ const downloadCategories = [
   },
   {
     title: "Administrative Forms",
-    icon: FileText,
+    icon: FileSpreadsheet,
     files: [
       { name: "Leave of Absence Request", type: "PDF", size: "320 KB" },
       { name: "Transcript Request Form", type: "PDF", size: "280 KB" },
@@ -35,7 +35,7 @@ const downloadCategories = [
   },
   {
     title: "Schedules & Timetables",
-    icon: Calendar,
+    icon: CalendarRange,
     files: [
       { name: "Examination Timetable — First Semester", type: "PDF", size: "1.1 MB" },
       { name: "Lecture Timetable — All Faculties", type: "PDF", size: "2.3 MB" },
@@ -61,21 +61,21 @@ export default function DownloadsPage() {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {downloadCategories.map((category) => (
             <div key={category.title} className="bg-card border border-border rounded-xl overflow-hidden shadow-soft">
-              <div className="bg-primary/5 px-6 py-4 flex items-center gap-3 border-b border-border">
-                <category.icon className="h-5 w-5 text-accent" />
-                <h3 className="font-display text-lg font-bold text-foreground">{category.title}</h3>
+              <div className="bg-muted px-6 py-4 flex items-center gap-3 border-b border-border">
+                <div className="w-9 h-9 rounded-lg bg-accent/10 flex items-center justify-center">
+                  <category.icon className="h-4 w-4 text-accent" />
+                </div>
+                <h3 className="font-display text-base font-bold text-foreground">{category.title}</h3>
               </div>
               <ul className="divide-y divide-border">
                 {category.files.map((file) => (
                   <li key={file.name} className="px-6 py-3 flex items-center justify-between hover:bg-muted/50 transition-colors">
                     <div>
                       <p className="font-body text-sm font-medium text-foreground">{file.name}</p>
-                      <p className="font-body text-xs text-muted-foreground">
-                        {file.type} · {file.size}
-                      </p>
+                      <p className="font-body text-xs text-muted-foreground">{file.type} · {file.size}</p>
                     </div>
-                    <button className="p-2 rounded-lg text-accent hover:bg-accent/10 transition-colors" title="Download">
-                      <Download className="h-4 w-4" />
+                    <button className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent hover:bg-accent hover:text-accent-foreground transition-colors" title="Download">
+                      <ArrowDownToLine className="h-4 w-4" />
                     </button>
                   </li>
                 ))}
