@@ -38,12 +38,6 @@ export default function LoginPage() {
     }
   };
 
-  const portalLinks = [
-    { icon: GraduationCap, label: "Student Portal", desc: "Access courses, results & fees" },
-    { icon: BookOpenCheck, label: "Lecturer Portal", desc: "Manage classes & grading" },
-    { icon: ShieldCheck, label: "Admin Portal", desc: "University administration" },
-  ];
-
   return (
     <div className="min-h-screen flex">
       {/* Left branding panel with campus image */}
@@ -73,12 +67,21 @@ export default function LoginPage() {
 
             {/* Portal type cards */}
             <div className="grid grid-cols-3 gap-3">
-              {portalLinks.map((p) => (
-                <div key={p.label} className="bg-primary-foreground/10 backdrop-blur-sm rounded-xl p-4 border border-primary-foreground/10">
-                  <p.icon className="h-6 w-6 text-accent mb-2" />
-                  <p className="text-sm font-semibold text-primary-foreground">{p.label}</p>
-                  <p className="text-xs text-primary-foreground/50 mt-0.5">{p.desc}</p>
-                </div>
+              {roles.map((r) => (
+                <button
+                  type="button"
+                  key={r.key}
+                  onClick={() => setSelectedRole(r.key)}
+                  className={`text-left rounded-xl p-4 border transition-all ${
+                    selectedRole === r.key
+                      ? "bg-accent/20 border-accent ring-1 ring-accent"
+                      : "bg-primary-foreground/10 border-primary-foreground/10 hover:bg-primary-foreground/15"
+                  }`}
+                >
+                  <r.icon className={`h-6 w-6 mb-2 ${selectedRole === r.key ? "text-accent" : "text-primary-foreground/60"}`} />
+                  <p className="text-sm font-semibold text-primary-foreground">{r.label}</p>
+                  <p className="text-xs text-primary-foreground/50 mt-0.5">{r.desc}</p>
+                </button>
               ))}
             </div>
 
@@ -117,13 +120,22 @@ export default function LoginPage() {
             <p className="text-muted-foreground text-sm mt-1">Enter your credentials to access your dashboard</p>
           </div>
 
-          {/* Role quick-access pills (mobile) */}
-          <div className="lg:hidden flex gap-2 mb-6">
-            {portalLinks.map((p) => (
-              <div key={p.label} className="flex-1 flex flex-col items-center gap-1.5 p-3 rounded-lg bg-muted text-center">
-                <p.icon className="h-5 w-5 text-primary" />
-                <span className="text-[11px] font-medium text-foreground leading-tight">{p.label.replace(" Portal", "")}</span>
-              </div>
+          {/* Role selector */}
+          <div className="flex gap-2 mb-6">
+            {roles.map((r) => (
+              <button
+                type="button"
+                key={r.key}
+                onClick={() => setSelectedRole(r.key)}
+                className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-lg text-center transition-all border ${
+                  selectedRole === r.key
+                    ? "bg-primary/10 border-primary text-primary ring-1 ring-primary/30"
+                    : "bg-muted border-transparent hover:bg-muted/80"
+                }`}
+              >
+                <r.icon className={`h-5 w-5 ${selectedRole === r.key ? "text-primary" : "text-muted-foreground"}`} />
+                <span className={`text-[11px] font-medium leading-tight ${selectedRole === r.key ? "text-primary" : "text-foreground"}`}>{r.label}</span>
+              </button>
             ))}
           </div>
 
