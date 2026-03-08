@@ -39,6 +39,9 @@ import AdmissionsManagementPage from "./pages/dashboard/AdmissionsManagementPage
 import FeeManagementPage from "./pages/dashboard/FeeManagementPage";
 import ReportsPage from "./pages/dashboard/ReportsPage";
 import TimetablePage from "./pages/dashboard/TimetablePage";
+import LecturersManagementPage from "./pages/dashboard/LecturersManagementPage";
+import DepartmentsPage from "./pages/dashboard/DepartmentsPage";
+import SettingsPage from "./pages/dashboard/SettingsPage";
 
 const queryClient = new QueryClient();
 
@@ -90,6 +93,9 @@ const App = () => (
             <Route path="/dashboard/fee-management" element={<DashboardPage><FeeManagementPage /></DashboardPage>} />
             <Route path="/dashboard/reports" element={<DashboardPage><ReportsPage /></DashboardPage>} />
             <Route path="/dashboard/timetable" element={<DashboardPage><TimetablePage /></DashboardPage>} />
+            <Route path="/dashboard/lecturers" element={<DashboardPage><LecturersManagementPage /></DashboardPage>} />
+            <Route path="/dashboard/departments" element={<DashboardPage><DepartmentsPage /></DashboardPage>} />
+            <Route path="/dashboard/settings" element={<DashboardPage><SettingsPage /></DashboardPage>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
