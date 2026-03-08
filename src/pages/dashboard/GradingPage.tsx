@@ -59,7 +59,6 @@ export default function GradingPage() {
 
   const saveMutation = useMutation({
     mutationFn: async () => {
-      const course = courses.find((c: any) => c.id === selectedCourse);
       const entries = Object.entries(grades).filter(([, v]) => v.grade);
       for (const [studentId, { grade, points }] of entries) {
         const existing = existingResults.find((r: any) => r.student_id === studentId);
@@ -69,7 +68,7 @@ export default function GradingPage() {
           await supabase.from("results").insert({
             student_id: studentId,
             course_id: selectedCourse,
-            semester: course?.semester || "2025/2026 First",
+            semester: "2025/2026 First",
             grade,
             points: parseFloat(points),
           });
