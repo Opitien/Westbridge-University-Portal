@@ -1,7 +1,6 @@
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
 import { Microscope, BookMarked, Banknote, TrendingUp } from "lucide-react";
-import labResearch from "@/assets/lab-research.jpg";
 
 const centers = [
   { name: "Center for Artificial Intelligence", focus: "Machine learning, NLP, robotics", papers: 320 },
@@ -11,6 +10,8 @@ const centers = [
   { name: "Advanced Materials Institute", focus: "Nanomaterials, semiconductor physics", papers: 210 },
   { name: "Center for Data Science", focus: "Big data analytics, statistical modeling", papers: 175 },
 ];
+
+const researchImage = "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80";
 
 export default function ResearchPage() {
   return (
@@ -41,7 +42,7 @@ export default function ResearchPage() {
 
         {/* Research image */}
         <div className="relative rounded-2xl overflow-hidden h-64 md:h-80 mb-16">
-          <img src={labResearch} alt="Research laboratory" className="w-full h-full object-cover" />
+          <img src={researchImage} alt="Research laboratory" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/60 to-transparent" />
           <div className="absolute inset-0 flex items-center p-8 md:p-12">
             <div className="text-primary-foreground max-w-md">

@@ -1,8 +1,9 @@
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
 import { Library, Dumbbell, UtensilsCrossed, HeartPulse, Laptop, Home } from "lucide-react";
-import campusAerial from "@/assets/campus-aerial.jpg";
-import library from "@/assets/library.jpg";
+
+const campusOverview = "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=1600&q=80";
+const studentLife = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600&q=80";
 
 const clubs = [
   "Debate Society", "Drama Club", "Tech Innovation Club", "Music Society",
@@ -29,7 +30,7 @@ export default function CampusLifePage() {
 
       {/* Full-width campus image */}
       <div className="relative h-64 md:h-96">
-        <img src={campusAerial} alt="Campus overview" className="w-full h-full object-cover" />
+        <img src={campusOverview} alt="Campus overview" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
 
@@ -59,9 +60,9 @@ export default function CampusLifePage() {
         </div>
       </Section>
 
-      {/* Library image section */}
+      {/* Student life image section */}
       <div className="relative h-64 md:h-80">
-        <img src={library} alt="University Library interior" className="w-full h-full object-cover" />
+        <img src={studentLife} alt="Students studying together" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/30" />
         <div className="absolute inset-0 flex items-center justify-center text-center text-primary-foreground">
           <div>
