@@ -57,7 +57,7 @@ export default function Navbar() {
             </span>
             <span className="flex items-center gap-1.5">
               <Mail className="h-3 w-3 text-gold" />
-              info@granduniversity.edu
+              info@westbridgeuniversity.edu
             </span>
           </div>
           <div className="flex items-center gap-4 ml-auto">
