@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, forwardRef } from "react";
 
 interface SectionProps {
   children: ReactNode;
@@ -7,29 +7,34 @@ interface SectionProps {
   id?: string;
 }
 
-export function Section({ children, className = "", id }: SectionProps) {
-  return (
-    <motion.section
-      id={id}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`py-14 md:py-20 ${className}`}
-    >
-      <div className="container mx-auto px-4">{children}</div>
-    </motion.section>
-  );
-}
+export const Section = forwardRef<HTMLElement, SectionProps>(
+  function Section({ children, className = "", id }, ref) {
+    return (
+      <motion.section
+        ref={ref}
+        id={id}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`py-14 md:py-20 ${className}`}
+      >
+        <div className="container mx-auto px-4">{children}</div>
+      </motion.section>
+    );
+  }
+);
 
-export function SectionTitle({ children, subtitle }: { children: ReactNode; subtitle?: string }) {
-  return (
-    <div className="mb-10">
-      <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">{children}</h2>
-      {subtitle && <p className="text-muted-foreground font-body text-sm mt-2 max-w-xl">{subtitle}</p>}
-    </div>
-  );
-}
+export const SectionTitle = forwardRef<HTMLDivElement, { children: ReactNode; subtitle?: string }>(
+  function SectionTitle({ children, subtitle }, ref) {
+    return (
+      <div ref={ref} className="mb-10">
+        <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">{children}</h2>
+        {subtitle && <p className="text-muted-foreground font-body text-sm mt-2 max-w-xl">{subtitle}</p>}
+      </div>
+    );
+  }
+);
 
 interface PageHeroProps {
   title: string;

@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth, AppRole } from "@/contexts/AuthContext";
 import { toast } from "sonner";
-import { ArrowRight, Eye, EyeOff, GraduationCap, BookOpenCheck, ShieldCheck } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import universityCrest from "@/assets/university-crest.png";
 import campusImage from "@/assets/campus-login.jpg";
 
-const roles = [
-  { key: "student" as AppRole, icon: GraduationCap, label: "Student", desc: "Course registration & results" },
-  { key: "lecturer" as AppRole, icon: BookOpenCheck, label: "Lecturer", desc: "Teaching & grading" },
-  { key: "admin" as AppRole, icon: ShieldCheck, label: "Admin", desc: "University management" },
+const roles: { key: AppRole; label: string }[] = [
+  { key: "student", label: "Student" },
+  { key: "lecturer", label: "Lecturer" },
+  { key: "admin", label: "Admin" },
 ];
 
 export default function RegisterPage() {
@@ -44,118 +44,91 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left branding panel */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+    <div className="min-h-screen grid lg:grid-cols-2">
+      {/* Left — image panel */}
+      <div className="hidden lg:block relative">
         <img src={campusImage} alt="Campus" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 via-primary/70 to-primary/90" />
-        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          <Link to="/" className="inline-flex items-center gap-3">
-            <img src={universityCrest} alt="Westbridge University" className="h-12 w-12" />
-            <div>
-              <h2 className="font-heading text-xl font-bold text-primary-foreground">Westbridge University</h2>
-              <p className="text-primary-foreground/60 text-sm">Excellence in Education</p>
-            </div>
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="relative z-10 flex flex-col justify-between h-full p-10">
+          <Link to="/" className="inline-flex items-center gap-2.5">
+            <img src={universityCrest} alt="" className="h-9 w-9" />
+            <span className="font-heading text-sm font-bold text-white">WestBridge University</span>
           </Link>
-
-          <div className="space-y-6">
-            <h1 className="font-heading text-4xl font-bold leading-tight text-primary-foreground">
-              Join Our Academic<br />Community
+          <div>
+            <h1 className="font-heading text-3xl font-bold text-white leading-snug max-w-sm">
+              Join Our Community
             </h1>
-            <p className="text-primary-foreground/70 text-lg max-w-md">
-              Create your account to access the portal and begin your journey with us.
+            <p className="text-white/50 font-body text-sm mt-2 max-w-xs">
+              Create your account to access the student portal and begin your journey.
             </p>
-
-            <div className="grid grid-cols-3 gap-3">
-              {roles.map((r) => (
-                <button
-                  type="button"
-                  key={r.key}
-                  onClick={() => setSelectedRole(r.key)}
-                  className={`text-left rounded-xl p-4 border transition-all ${
-                    selectedRole === r.key
-                      ? "bg-accent/20 border-accent ring-1 ring-accent"
-                      : "bg-primary-foreground/10 border-primary-foreground/10 hover:bg-primary-foreground/15"
-                  }`}
-                >
-                  <r.icon className={`h-6 w-6 mb-2 ${selectedRole === r.key ? "text-accent" : "text-primary-foreground/60"}`} />
-                  <p className="text-sm font-semibold text-primary-foreground">{r.label}</p>
-                  <p className="text-xs text-primary-foreground/50 mt-0.5">{r.desc}</p>
-                </button>
-              ))}
-            </div>
           </div>
-
-          <p className="text-xs text-primary-foreground/40">© 2026 Westbridge University. All rights reserved.</p>
+          <p className="text-[11px] text-white/30 font-body">© 2026 WestBridge University</p>
         </div>
       </div>
 
-      {/* Right register panel */}
-      <div className="flex-1 flex items-center justify-center p-6 lg:p-12 bg-background">
-        <div className="w-full max-w-md">
-          <div className="lg:hidden text-center mb-8">
-            <Link to="/" className="inline-block mb-4">
-              <img src={universityCrest} alt="Westbridge University" className="h-14 w-14 mx-auto" />
+      {/* Right — form */}
+      <div className="flex items-center justify-center p-6 lg:p-12 bg-background">
+        <div className="w-full max-w-sm">
+          <div className="lg:hidden flex items-center gap-2.5 mb-10">
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <img src={universityCrest} alt="" className="h-9 w-9" />
+              <span className="font-heading text-sm font-bold text-foreground">WestBridge University</span>
             </Link>
-            <h1 className="font-heading text-2xl font-bold text-foreground">Westbridge University</h1>
           </div>
 
-          <div className="mb-8">
-            <h2 className="font-display text-2xl font-bold text-foreground">Create your account</h2>
-            <p className="text-muted-foreground text-sm mt-1">Register as a new user</p>
-          </div>
+          <h2 className="font-display text-xl font-bold text-foreground">Create account</h2>
+          <p className="text-muted-foreground text-xs mt-1 mb-6">Register as a new user.</p>
 
-          {/* Role selector */}
-          <div className="flex gap-2 mb-6">
+          {/* Role tabs */}
+          <div className="flex border border-border rounded-lg p-0.5 mb-6 bg-muted/50">
             {roles.map((r) => (
               <button
                 type="button"
                 key={r.key}
                 onClick={() => setSelectedRole(r.key)}
-                className={`flex-1 flex flex-col items-center gap-1.5 p-3 rounded-lg text-center transition-all border ${
+                className={`flex-1 py-2 text-xs font-body font-medium rounded-md transition-all ${
                   selectedRole === r.key
-                    ? "bg-primary/10 border-primary text-primary ring-1 ring-primary/30"
-                    : "bg-muted border-transparent hover:bg-muted/80"
+                    ? "bg-card text-foreground shadow-sm"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                <r.icon className={`h-5 w-5 ${selectedRole === r.key ? "text-primary" : "text-muted-foreground"}`} />
-                <span className={`text-[11px] font-medium leading-tight ${selectedRole === r.key ? "text-primary" : "text-foreground"}`}>{r.label}</span>
+                {r.label}
               </button>
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Full Name</label>
+              <label className="block text-xs font-medium text-foreground mb-1">Full Name</label>
               <input
                 type="text"
                 value={fullName}
                 onChange={e => setFullName(e.target.value)}
                 placeholder="John Doe"
-                className="w-full px-4 py-3 rounded-lg border border-input bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Email Address</label>
+              <label className="block text-xs font-medium text-foreground mb-1">Email</label>
               <input
                 type="email"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 placeholder="you@email.com"
-                className="w-full px-4 py-3 rounded-lg border border-input bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
                 required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-foreground mb-1.5">Password</label>
+              <label className="block text-xs font-medium text-foreground mb-1">Password</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   placeholder="Min. 6 characters"
-                  className="w-full px-4 py-3 rounded-lg border border-input bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-colors pr-10"
+                  className="w-full px-3.5 py-2.5 rounded-lg border border-input bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors pr-10"
                   required
                 />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground">
@@ -166,18 +139,19 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-primary text-primary-foreground py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full bg-primary text-primary-foreground py-2.5 rounded-lg font-body font-semibold text-sm hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
-              {isLoading ? "Creating..." : `Create ${roles.find(r => r.key === selectedRole)?.label} Account`} <ArrowRight className="h-4 w-4" />
+              {isLoading ? "Creating…" : `Create ${roles.find(r => r.key === selectedRole)?.label} Account`}
             </button>
-            <p className="text-xs text-muted-foreground text-center">
-              Already have an account?{" "}
-              <Link to="/login" className="text-secondary hover:underline font-medium">Sign in</Link>
-            </p>
           </form>
 
+          <p className="text-xs text-muted-foreground text-center mt-6">
+            Already have an account?{" "}
+            <Link to="/login" className="text-primary hover:underline font-medium">Sign in</Link>
+          </p>
+
           <p className="text-center mt-8">
-            <Link to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link to="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
               ← Back to website
             </Link>
           </p>
