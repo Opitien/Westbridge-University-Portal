@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { PageHero, Section } from "@/components/SectionComponents";
-import { Users, GraduationCap } from "lucide-react";
+import { Users } from "lucide-react";
 
 const faculties = [
   {
@@ -57,27 +56,22 @@ export default function FacultiesPage() {
         breadcrumb="Academics"
       />
       <Section>
-        <div className="grid md:grid-cols-2 gap-8">
-          {faculties.map((fac) => (
-            <div key={fac.name} className="bg-card rounded-xl overflow-hidden shadow-soft border border-border hover:shadow-elevated transition-shadow">
-              <div className="h-44 overflow-hidden">
+        <div className="space-y-6">
+          {faculties.map((fac, i) => (
+            <div key={fac.name} className={`grid md:grid-cols-12 gap-5 bg-card rounded-lg border border-border overflow-hidden ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+              <div className={`md:col-span-4 h-48 md:h-auto ${i % 2 === 1 ? 'md:order-last' : ''}`}>
                 <img src={fac.image} alt={fac.name} className="w-full h-full object-cover" />
               </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-bold text-foreground mb-1">{fac.name}</h3>
-                <p className="text-accent font-body text-sm font-medium mb-4 flex items-center gap-1.5">
-                  <GraduationCap className="h-4 w-4" /> Dean: {fac.dean}
-                </p>
-                <div className="mb-4">
-                  <p className="text-sm font-body font-semibold text-foreground mb-2">Departments:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {fac.departments.map((d) => (
-                      <span key={d} className="bg-muted text-muted-foreground text-xs font-body px-3 py-1 rounded-full">{d}</span>
-                    ))}
-                  </div>
+              <div className="md:col-span-8 p-5 md:p-6 flex flex-col justify-center">
+                <h3 className="font-display text-lg font-bold text-foreground mb-1">{fac.name}</h3>
+                <p className="text-xs font-body text-accent font-medium mb-3">Dean: {fac.dean}</p>
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {fac.departments.map((d) => (
+                    <span key={d} className="bg-muted text-muted-foreground text-[11px] font-body px-2.5 py-1 rounded-md">{d}</span>
+                  ))}
                 </div>
-                <p className="text-muted-foreground font-body text-sm flex items-center gap-1.5">
-                  <Users className="h-4 w-4 text-accent" /> {fac.students.toLocaleString()} students enrolled
+                <p className="text-muted-foreground font-body text-xs flex items-center gap-1.5">
+                  <Users className="h-3.5 w-3.5 text-accent" /> {fac.students.toLocaleString()} students enrolled
                 </p>
               </div>
             </div>

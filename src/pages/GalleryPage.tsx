@@ -1,82 +1,116 @@
 import Layout from "@/components/Layout";
-import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
+import { PageHero, Section } from "@/components/SectionComponents";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ZoomIn } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-const galleryCategories = ["All", "Campus", "Events", "Academics", "Sports", "Graduation"];
+const categories = ["All", "Facilities", "Student Life", "Events", "Academics", "Sports", "Graduation"] as const;
 
 const galleryItems = [
-  { id: 1, src: "https://images.unsplash.com/photo-1562774053-701939374585?w=600", title: "Main Campus Building", category: "Campus" },
-  { id: 2, src: "https://images.unsplash.com/photo-1523050854058-8df90110c476?w=600", title: "University Library", category: "Campus" },
-  { id: 3, src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600", title: "Graduation Ceremony 2025", category: "Graduation" },
-  { id: 4, src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600", title: "Student Orientation", category: "Events" },
-  { id: 5, src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600", title: "Science Laboratory", category: "Academics" },
-  { id: 6, src: "https://images.unsplash.com/photo-1461896836934-bd45ba0fcfca?w=600", title: "Sports Day", category: "Sports" },
-  { id: 7, src: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=600", title: "Campus Aerial View", category: "Campus" },
-  { id: 8, src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600", title: "Lecture Hall", category: "Academics" },
-  { id: 9, src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600", title: "Annual Conference", category: "Events" },
-  { id: 10, src: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600", title: "Football Match", category: "Sports" },
-  { id: 11, src: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=600", title: "Convocation", category: "Graduation" },
-  { id: 12, src: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600", title: "Student Garden", category: "Campus" },
+  // Facilities
+  { id: 1, src: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80", title: "Administration Building", category: "Facilities" },
+  { id: 2, src: "https://images.unsplash.com/photo-1568667256549-094345857637?w=600&q=80", title: "Central Library Reading Hall", category: "Facilities" },
+  { id: 3, src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80", title: "Faculty of Business Wing", category: "Facilities" },
+  { id: 4, src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80", title: "Lecture Theatre Complex", category: "Facilities" },
+  { id: 5, src: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&q=80", title: "Student Dormitories", category: "Facilities" },
+  { id: 6, src: "https://images.unsplash.com/photo-1595113316349-9fa4eb24f884?w=600&q=80", title: "University Sports Arena", category: "Facilities" },
+
+  // Student Life
+  { id: 7, src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&q=80", title: "Study Group in the Quad", category: "Student Life" },
+  { id: 8, src: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80", title: "Friends on Campus Lawn", category: "Student Life" },
+  { id: 9, src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80", title: "Collaborative Project Work", category: "Student Life" },
+  { id: 10, src: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80", title: "Freshman Welcome Week", category: "Student Life" },
+  { id: 11, src: "https://images.unsplash.com/photo-1525026198548-4baa812f1183?w=600&q=80", title: "Campus Coffee Hour", category: "Student Life" },
+
+  // Events
+  { id: 12, src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80", title: "Annual Research Symposium", category: "Events" },
+  { id: 13, src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80", title: "Keynote Speaker Series", category: "Events" },
+  { id: 14, src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&q=80", title: "TEDx WestBridge", category: "Events" },
+  { id: 15, src: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80", title: "Cultural Night Festival", category: "Events" },
+  { id: 16, src: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&q=80", title: "Founders Day Celebration", category: "Events" },
+
+  // Academics
+  { id: 17, src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80", title: "Chemistry Lab Session", category: "Academics" },
+  { id: 18, src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80", title: "Engineering Workshop", category: "Academics" },
+  { id: 19, src: "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&q=80", title: "Biomedical Research Lab", category: "Academics" },
+  { id: 20, src: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80", title: "Physics Department", category: "Academics" },
+  { id: 21, src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80", title: "Outdoor Field Study", category: "Academics" },
+
+  // Sports
+  { id: 22, src: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&q=80", title: "Inter-University Football", category: "Sports" },
+  { id: 23, src: "https://images.unsplash.com/photo-1461896836934-bd45ba0fcfca?w=600&q=80", title: "Athletics Championship", category: "Sports" },
+  { id: 24, src: "https://images.unsplash.com/photo-1519861531473-9200262188bf?w=600&q=80", title: "Basketball Tournament", category: "Sports" },
+  { id: 25, src: "https://images.unsplash.com/photo-1530549387789-4c1017266635?w=600&q=80", title: "Swimming Gala", category: "Sports" },
+
+  // Graduation
+  { id: 26, src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&q=80", title: "Class of 2025 Ceremony", category: "Graduation" },
+  { id: 27, src: "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?w=600&q=80", title: "Cap Toss Celebration", category: "Graduation" },
+  { id: 28, src: "https://images.unsplash.com/photo-1627556704353-39ef22c18ecd?w=600&q=80", title: "Degree Presentation", category: "Graduation" },
+  { id: 29, src: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80", title: "Alumni Award Ceremony", category: "Graduation" },
+  { id: 30, src: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600&q=80", title: "Graduation Family Photos", category: "Graduation" },
 ];
 
 export default function GalleryPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [lightbox, setLightbox] = useState<typeof galleryItems[0] | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filtered = activeCategory === "All" ? galleryItems : galleryItems.filter(i => i.category === activeCategory);
+  const lightboxItem = lightboxIndex !== null ? filtered[lightboxIndex] : null;
+
+  const navigateLightbox = (dir: number) => {
+    if (lightboxIndex === null) return;
+    const next = lightboxIndex + dir;
+    if (next >= 0 && next < filtered.length) setLightboxIndex(next);
+  };
 
   return (
     <Layout>
-      <PageHero title="Photo Gallery" subtitle="Explore campus life through our lens." breadcrumb="Gallery" />
+      <PageHero title="Photo Gallery" subtitle="Explore life at WestBridge through our lens." breadcrumb="Gallery" />
 
       <Section>
-        <SectionTitle subtitle="Browse photos from across campus life and university events.">Our Gallery</SectionTitle>
-
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {galleryCategories.map(cat => (
+          {categories.map(cat => (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full font-body text-sm font-medium transition-all ${
+              onClick={() => { setActiveCategory(cat); setLightboxIndex(null); }}
+              className={`px-5 py-2 rounded-full font-body text-sm transition-all ${
                 activeCategory === cat
-                  ? "bg-primary text-primary-foreground shadow-soft"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/70"
               }`}
             >
               {cat}
+              <span className="ml-1.5 text-xs opacity-60">
+                ({cat === "All" ? galleryItems.length : galleryItems.filter(i => i.category === cat).length})
+              </span>
             </button>
           ))}
         </div>
 
-        <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <motion.div layout className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
           <AnimatePresence mode="popLayout">
-            {filtered.map(item => (
+            {filtered.map((item, idx) => (
               <motion.div
                 key={item.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                className="cursor-pointer group overflow-hidden rounded-xl border border-border relative"
-                onClick={() => setLightbox(item)}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="break-inside-avoid cursor-pointer group overflow-hidden rounded-lg border border-border bg-card"
+                onClick={() => setLightboxIndex(idx)}
               >
-                <div className="aspect-square overflow-hidden">
+                <div className="overflow-hidden">
                   <img
                     src={item.src}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
-                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors flex items-center justify-center">
-                  <ZoomIn className="h-8 w-8 text-primary-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="p-3 bg-card">
-                  <p className="font-body text-sm font-medium text-foreground">{item.title}</p>
-                  <p className="font-body text-xs text-muted-foreground">{item.category}</p>
+                <div className="px-3 py-2.5">
+                  <p className="font-body text-sm font-medium text-foreground leading-tight">{item.title}</p>
+                  <p className="font-body text-xs text-muted-foreground mt-0.5">{item.category}</p>
                 </div>
               </motion.div>
             ))}
@@ -84,30 +118,44 @@ export default function GalleryPage() {
         </motion.div>
       </Section>
 
+      {/* Lightbox */}
       <AnimatePresence>
-        {lightbox && (
+        {lightboxItem && lightboxIndex !== null && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-foreground/90 flex items-center justify-center p-4"
-            onClick={() => setLightbox(null)}
+            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
+            onClick={() => setLightboxIndex(null)}
           >
-            <button className="absolute top-6 right-6 text-primary-foreground w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-primary-foreground/20 transition-colors" onClick={() => setLightbox(null)}>
+            <button className="absolute top-5 right-5 text-white/70 hover:text-white w-10 h-10 flex items-center justify-center" onClick={() => setLightboxIndex(null)}>
               <X className="h-6 w-6" />
             </button>
+
+            {lightboxIndex > 0 && (
+              <button className="absolute left-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white" onClick={e => { e.stopPropagation(); navigateLightbox(-1); }}>
+                <ChevronLeft className="h-8 w-8" />
+              </button>
+            )}
+            {lightboxIndex < filtered.length - 1 && (
+              <button className="absolute right-4 top-1/2 -translate-y-1/2 text-white/60 hover:text-white" onClick={e => { e.stopPropagation(); navigateLightbox(1); }}>
+                <ChevronRight className="h-8 w-8" />
+              </button>
+            )}
+
             <motion.img
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              src={lightbox.src.replace("w=600", "w=1200")}
-              alt={lightbox.title}
-              className="max-w-full max-h-[85vh] rounded-xl object-contain"
+              key={lightboxItem.id}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              src={lightboxItem.src.replace("w=600", "w=1400")}
+              alt={lightboxItem.title}
+              className="max-w-full max-h-[85vh] rounded-lg object-contain"
               onClick={e => e.stopPropagation()}
             />
-            <div className="absolute bottom-8 text-center text-primary-foreground">
-              <p className="font-display text-xl font-bold">{lightbox.title}</p>
-              <p className="font-body text-sm opacity-70">{lightbox.category}</p>
+            <div className="absolute bottom-6 text-center text-white">
+              <p className="text-lg font-medium">{lightboxItem.title}</p>
+              <p className="text-sm text-white/50">{lightboxItem.category} · {lightboxIndex + 1} / {filtered.length}</p>
             </div>
           </motion.div>
         )}
