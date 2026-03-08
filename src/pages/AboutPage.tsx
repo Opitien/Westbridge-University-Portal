@@ -15,7 +15,7 @@ export default function AboutPage() {
   return (
     <Layout>
       <PageHero
-        title="About Grand University"
+        title="About WestBridge University"
         subtitle="Over 130 years of academic excellence, innovation, and global impact."
         breadcrumb="About Us"
       />
@@ -25,8 +25,8 @@ export default function AboutPage() {
           <div>
             <h2 className="font-heading text-3xl font-bold text-foreground mb-6">Our History</h2>
             <div className="space-y-4 font-body text-muted-foreground leading-relaxed">
-              <p>Founded in 1892, Grand University began as a small liberal arts college with a vision to make quality education accessible to all. Over the decades, it has grown into one of the world's leading research universities.</p>
-              <p>Today, Grand University spans 300 acres of historic campus grounds, housing state-of-the-art facilities, world-renowned research centers, and a vibrant community of over 25,000 students from 120 countries.</p>
+              <p>Founded in 1892, WestBridge University began as a small liberal arts college with a vision to make quality education accessible to all. Over the decades, it has grown into one of the world's leading research universities.</p>
+              <p>Today, WestBridge University spans 300 acres of historic campus grounds, housing state-of-the-art facilities, world-renowned research centers, and a vibrant community of over 25,000 students from 120 countries.</p>
               <p>Our alumni include Nobel laureates, heads of state, pioneering scientists, and influential business leaders who continue to shape the world.</p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function AboutPage() {
 
       {/* Full width image break */}
       <div className="relative h-64 md:h-80">
-        <img src={library} alt="Grand University Library" className="w-full h-full object-cover" />
+        <img src={library} alt="WestBridge University Library" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-primary-foreground">
@@ -90,7 +90,7 @@ export default function AboutPage() {
       </div>
 
       <Section id="leadership">
-        <SectionTitle subtitle="Meet the leaders guiding Grand University">University Leadership</SectionTitle>
+        <SectionTitle subtitle="Meet the leaders guiding WestBridge University">University Leadership</SectionTitle>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {leaders.map((leader) => (
             <div key={leader.name} className="bg-card rounded-xl p-6 shadow-soft border border-border text-center group hover:shadow-elevated transition-shadow">

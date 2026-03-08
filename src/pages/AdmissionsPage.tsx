@@ -26,16 +26,16 @@ export default function AdmissionsPage() {
     <Layout>
       <PageHero
         title="Admissions"
-        subtitle="Start your journey at Grand University. Applications for Spring 2026 are now open."
+        subtitle="Start your journey at WestBridge University. Applications for Spring 2026 are now open."
         breadcrumb="Admissions"
       />
 
       <Section>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-heading text-3xl font-bold text-foreground mb-6">Why Grand University?</h2>
+            <h2 className="font-heading text-3xl font-bold text-foreground mb-6">Why WestBridge University?</h2>
             <p className="font-body text-muted-foreground leading-relaxed mb-6">
-              Grand University offers a transformative educational experience with world-class faculty, cutting-edge facilities, and a diverse global community.
+              WestBridge University offers a transformative educational experience with world-class faculty, cutting-edge facilities, and a diverse global community.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -112,7 +112,7 @@ export default function AdmissionsPage() {
         <div className="container mx-auto px-4 text-center">
           <h2 className="font-heading text-3xl font-bold text-primary-foreground mb-4">Ready to Apply?</h2>
           <p className="text-primary-foreground/70 font-body mb-8 max-w-lg mx-auto">
-            Begin your application today and take the first step toward your future at Grand University.
+            Begin your application today and take the first step toward your future at WestBridge University.
           </p>
           <button className="bg-accent text-accent-foreground px-10 py-4 rounded-lg font-body font-bold text-lg hover:bg-gold-light transition-colors shadow-gold inline-flex items-center gap-2">
             Start Application <ArrowRight className="h-5 w-5" />
