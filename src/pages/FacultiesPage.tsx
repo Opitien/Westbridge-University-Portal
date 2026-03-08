@@ -2,10 +2,6 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { PageHero, Section } from "@/components/SectionComponents";
 import { Users, GraduationCap } from "lucide-react";
-import labResearch from "@/assets/lab-research.jpg";
-import library from "@/assets/library.jpg";
-import campusAerial from "@/assets/campus-aerial.jpg";
-import graduation from "@/assets/graduation.jpg";
 
 const faculties = [
   {
@@ -13,42 +9,42 @@ const faculties = [
     dean: "Prof. Robert Adebayo",
     departments: ["Civil Engineering", "Mechanical Engineering", "Electrical Engineering", "Computer Engineering", "Chemical Engineering"],
     students: 4200,
-    image: labResearch,
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
   },
   {
     name: "Faculty of Medicine & Health Sciences",
     dean: "Prof. Sarah Greenwood",
     departments: ["Medicine", "Nursing", "Pharmacy", "Public Health", "Anatomy"],
     students: 3100,
-    image: library,
+    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80",
   },
   {
     name: "Faculty of Arts & Humanities",
     dean: "Dr. Amara Diop",
     departments: ["English", "History", "Philosophy", "Linguistics", "Fine Arts"],
     students: 3500,
-    image: campusAerial,
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80",
   },
   {
     name: "Faculty of Business & Management",
     dean: "Prof. Liu Chang",
     departments: ["Accounting", "Finance", "Marketing", "Management", "Economics"],
     students: 3800,
-    image: graduation,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
   },
   {
     name: "Faculty of Sciences",
     dean: "Prof. Elena Petrova",
     departments: ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science"],
     students: 4000,
-    image: labResearch,
+    image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&q=80",
   },
   {
     name: "Faculty of Law",
     dean: "Dr. Michael Okafor",
     departments: ["Public Law", "Private Law", "International Law", "Jurisprudence"],
     students: 1800,
-    image: library,
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
   },
 ];
 

@@ -1,8 +1,9 @@
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
 import { Crosshair, Eye, UserCircle, Building2 } from "lucide-react";
-import campusAerial from "@/assets/campus-aerial.jpg";
-import library from "@/assets/library.jpg";
+
+const historyImage = "https://images.unsplash.com/photo-1592280771190-3e2e4d571952?w=1600&q=80";
+const facilitiesImage = "https://images.unsplash.com/photo-1568667256549-094345857637?w=1600&q=80";
 
 const leaders = [
   { name: "Prof. Eleanor Whitfield", title: "Vice Chancellor", area: "Quantum Physics" },
@@ -31,7 +32,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="relative rounded-2xl overflow-hidden">
-            <img src={campusAerial} alt="Historic campus grounds" className="w-full h-80 object-cover" />
+            <img src={historyImage} alt="Historic campus grounds" className="w-full h-80 object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <div className="grid grid-cols-4 gap-4 text-center text-primary-foreground">
@@ -78,7 +79,7 @@ export default function AboutPage() {
 
       {/* Full width image break */}
       <div className="relative h-64 md:h-80">
-        <img src={library} alt="WestBridge University Library" className="w-full h-full object-cover" />
+        <img src={facilitiesImage} alt="WestBridge University Library" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-primary/40" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-primary-foreground">

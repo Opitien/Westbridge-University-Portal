@@ -3,7 +3,8 @@ import Layout from "@/components/Layout";
 import { PageHero, Section } from "@/components/SectionComponents";
 import { MapPin, Phone, Mail, Send, Clock } from "lucide-react";
 import { toast } from "sonner";
-import campusAerial from "@/assets/campus-aerial.jpg";
+
+const contactMapImage = "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=1200&q=80";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
@@ -43,7 +44,7 @@ export default function ContactPage() {
 
             {/* Map placeholder with campus image */}
             <div className="rounded-xl overflow-hidden h-48">
-              <img src={campusAerial} alt="Campus location" className="w-full h-full object-cover" />
+              <img src={contactMapImage} alt="Campus location" className="w-full h-full object-cover" />
             </div>
           </div>
 

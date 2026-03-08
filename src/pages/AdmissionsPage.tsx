@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { PageHero, Section, SectionTitle } from "@/components/SectionComponents";
 import { CircleCheck, ArrowRight, CalendarClock, UserPlus, FileUp, CreditCard, Search } from "lucide-react";
-import graduation from "@/assets/graduation.jpg";
+
+const admissionsImage = "https://images.unsplash.com/photo-1627556704290-2b1f5853ff78?w=1600&q=80";
 
 const requirements = [
   "Completed secondary school certificate (or equivalent)",
@@ -52,7 +53,7 @@ export default function AdmissionsPage() {
             </div>
           </div>
           <div className="relative rounded-2xl overflow-hidden h-80">
-            <img src={graduation} alt="Students celebrating" className="w-full h-full object-cover" />
+            <img src={admissionsImage} alt="Students celebrating" className="w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 to-transparent" />
           </div>
         </div>
